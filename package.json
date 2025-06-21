@@ -1,0 +1,50 @@
+{
+  "name": "ai-agents-platform",
+  "version": "1.0.0",
+  "description": "Full-stack AI agents management platform with Cerebras integration",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "pm2 start ecosystem.config.js --env production",
+    "stop": "pm2 stop ai-agents-backend",
+    "restart": "pm2 restart ai-agents-backend",
+    "logs": "pm2 logs ai-agents-backend",
+    "setup": "npm run setup:backend && npm run setup:frontend",
+    "setup:backend": "cd backend && pip install -r requirements.txt",
+    "setup:frontend": "cd frontend && npm install",
+    "db:setup": "createdb ai_agents || true",
+    "db:migrate": "cd backend && alembic upgrade head",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && pytest",
+    "test:frontend": "cd frontend && npm run test",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && black . && isort .",
+    "lint:frontend": "cd frontend && npm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "pm2": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rajshah9305/crewaiagents.git"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "crewai",
+    "cerebras",
+    "fastapi",
+    "react",
+    "typescript"
+  ],
+  "author": "Raj Shah",
+  "license": "MIT"
+} 
